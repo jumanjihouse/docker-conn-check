@@ -4,6 +4,13 @@ Docker-based application container to provide
 [conn-check](http://conn-check.org/) via
 [PIP](https://pypi.python.org/pypi/conn-check).
 
+[![Image Size](https://img.shields.io/imagelayers/image-size/jumanjiman/conn-check/latest.svg)](https://imagelayers.io/?images=jumanjiman/conn-check:latest)&nbsp;
+[![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/conn-check.svg)](https://registry.hub.docker.com/u/jumanjiman/conn-check)&nbsp;
+
+Project URL: [https://github.com/jumanjihouse/docker-conn-check](https://github.com/jumanjihouse/docker-conn-check)
+<br />
+Docker hub: [https://registry.hub.docker.com/u/jumanjiman/conn-check/](https://registry.hub.docker.com/u/jumanjiman/conn-check/)
+
 
 ### The Problem
 
