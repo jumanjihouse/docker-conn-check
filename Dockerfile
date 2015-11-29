@@ -1,14 +1,26 @@
-FROM ubuntu:latest
+FROM alpine:3.2
 
-RUN apt-get update; DEBIAN_FRONTEND=noninteractive apt-get install -qq \
-  libffi-dev \
-  libssl-dev \
-  libyaml-dev \
-  python-dev \
-  python-pip \
-  python-virtualenv \
-  ; apt-get clean
+# Which version of conn-check to install.
+ENV VERSION 1.3.1
 
-RUN cd /opt; virtualenv conn-check; cd conn-check; bin/pip install conn-check | tee /tmp/install.log
+RUN apk upgrade --update --available && \
+    apk add \
+      ca-certificates \
+      openssl \
+      python \
+    && apk add -t devtools \
+      alpine-sdk \
+      libffi-dev \
+      openssl-dev \
+      python-dev \
+      py-pip \
+      yaml-dev \
+    && pip install -Iv conn-check==${VERSION} \
+    && apk del --purge devtools \
+    && rm -f /var/cache/apk/* \
+    && adduser -D user
 
-ENTRYPOINT ["/opt/conn-check/bin/conn-check"]
+USER user
+WORKDIR /home/user
+
+ENTRYPOINT ["conn-check"]
