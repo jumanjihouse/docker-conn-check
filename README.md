@@ -1,7 +1,8 @@
 ## Overview
 
 Docker-based application container to provide
-[conn-check](https://launchpad.net/conn-check).
+[conn-check](http://conn-check.org/) via
+[PIP](https://pypi.python.org/pypi/conn-check).
 
 
 ### The Problem
