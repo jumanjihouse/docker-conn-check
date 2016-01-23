@@ -56,6 +56,27 @@ Details about the options and its YAML config are at
 http://bazaar.launchpad.net/~ubuntuone-hackers/conn-check/trunk/view/head:/README.rst
 
 
+### Build integrity
+
+An unattended test harness runs on CircleCI to build and test the image.
+If all tests pass on master branch in the unattended test harness,
+CircleCI pushes the built image to the Docker hub.
+
+Available tags:
+
+* Optimistic: `jumanjiman/conn-check:latest`
+* Pessimistic: `jumanjiman/conn-check:<VERSION>-<date>T<time>-git-<hash>`
+
+![workflow](assets/docker_hub_workflow.png)
+
+A simple test harness uses [BATS](https://github.com/sstephenson/bats).
+Output resembles:
+
+    1..2
+    ok 1 --help works
+    ok 2 successfully checks TLS to google.com
+
+
 ### License
 
 GNU GPLv3

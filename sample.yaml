@@ -1,0 +1,6 @@
+---
+
+- type: tls
+  host: www.google.com
+  port: 443
+  disable_tls_verification: false

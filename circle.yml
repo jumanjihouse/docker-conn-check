@@ -1,0 +1,40 @@
+# https://circleci.com/docs/docker
+machine:
+  environment:
+    # If you change this, you must also change Dockerfile.
+    VERSION: 1.3.1
+    TAG: ${VERSION}-$(date +%Y%m%dT%H%M)-git-${CIRCLE_SHA1:0:7}
+    BATS_VER: 0.4.0
+  services:
+    - docker
+
+dependencies:
+  cache_directories:
+    - "~/deps"
+  pre:
+    - if [[ ! -e ~/deps/bats_v${BATS_VER}.tar.gz ]]; then mkdir -p ~/deps; curl -sSL -o ~/deps/bats_v${BATS_VER}.tar.gz https://github.com/sstephenson/bats/archive/v${BATS_VER}.tar.gz; fi
+    - tar -xf ~/deps/bats_v${BATS_VER}.tar.gz
+    - sudo bats-${BATS_VER}/install.sh /usr/local
+  override:
+    - docker info
+    - docker version
+    - docker images
+    - docker ps -a
+
+test:
+  pre:
+    - docker build -t conn-check .
+  override:
+    - bats test/*.bats
+
+deployment:
+  master:
+    branch: master
+    owner: jumanjihouse
+    commands:
+      - docker login -e ${mail} -u ${user} -p ${pass}
+      - docker tag conn-check jumanjiman/conn-check:${TAG}
+      - docker push jumanjiman/conn-check:${TAG}
+      - docker tag conn-check jumanjiman/conn-check:latest
+      - docker push jumanjiman/conn-check:latest
+      - docker logout
