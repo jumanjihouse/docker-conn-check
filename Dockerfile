@@ -20,6 +20,8 @@ RUN apk upgrade --no-cache --available && \
     && apk del --purge devtools \
     && adduser -D user
 
+COPY sample.yaml /etc/conn-check/
+
 USER user
 WORKDIR /home/user
 
