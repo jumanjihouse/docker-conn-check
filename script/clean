@@ -1,0 +1,10 @@
+#!/bin/sh
+set -x
+
+docker rm -f ccv
+docker volume ls -qf dangling=true | xargs docker volume rm
+docker images -qf dangling=true | xargs docker rmi
+
+rm -f runtime/wheels.tgz
+
+exit 0
