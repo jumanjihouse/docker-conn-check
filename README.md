@@ -4,7 +4,7 @@ Docker-based application container to provide
 [conn-check](http://conn-check.org/) via
 [PIP](https://pypi.python.org/pypi/conn-check).
 
-[![Image Size](https://img.shields.io/imagelayers/image-size/jumanjiman/conn-check/latest.svg)](https://imagelayers.io/?images=jumanjiman/conn-check:latest)&nbsp;
+[![](https://imagelayers.io/badge/jumanjiman/conn-check:latest.svg)](https://imagelayers.io/?images=jumanjiman/conn-check:latest 'View on imagelayers.io')&nbsp;
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/conn-check.svg)](https://registry.hub.docker.com/u/jumanjiman/conn-check)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-conn-check.png?circle-token=9b167f5d055084e8422996ec63678e42859ec5d0)](https://circleci.com/gh/jumanjihouse/docker-conn-check/tree/master 'View CI builds')
 
