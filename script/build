@@ -1,0 +1,16 @@
+#!/bin/sh
+set -ex
+
+# Build conn-check in a "builder" image.
+docker build --rm -t conn-check-builder builder/
+
+# Copy wheels.tgz, which contains the built files.
+script/clean
+docker create --name ccv conn-check-builder true
+docker cp ccv:/home/user/conn-check/wheels.tgz runtime/
+
+# Build a runtime image.
+docker build --rm -t conn-check runtime/
+
+# Show image sizes.
+docker images | grep conn-check
