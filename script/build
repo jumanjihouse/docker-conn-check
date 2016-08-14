@@ -2,7 +2,9 @@
 set -ex
 
 # Build conn-check in a "builder" image.
-docker build --rm -t conn-check-builder builder/
+docker build --rm \
+  --build-arg VERSION=${VERSION} \
+  -t conn-check-builder builder/
 
 # Copy wheels.tgz, which contains the built files.
 script/clean

@@ -1,8 +1,9 @@
 FROM alpine:3.4
 
 # Which version of conn-check to install.
-# If you change this, you must also change circle.yml
-ENV VERSION 1.3.1
+# This should be an env var available to script/build.
+# Normally we set this via circle.yml
+ARG VERSION
 
 RUN apk add --no-cache \
       ca-certificates \
