@@ -4,13 +4,16 @@ Docker-based application container to provide
 [conn-check](http://conn-check.org/) via
 [PIP](https://pypi.python.org/pypi/conn-check).
 
-[![](https://imagelayers.io/badge/jumanjiman/conn-check:latest.svg)](https://imagelayers.io/?images=jumanjiman/conn-check:latest 'View on imagelayers.io')&nbsp;
+[![Download size](https://images.microbadger.com/badges/image/jumanjiman/conn-check.svg)](http://microbadger.com/images/jumanjiman/conn-check "View on microbadger.com")&nbsp;
+[![Version](https://images.microbadger.com/badges/version/jumanjiman/conn-check.svg)](http://microbadger.com/images/jumanjiman/conn-check "View on microbadger.com")&nbsp;
 [![Docker Registry](https://img.shields.io/docker/pulls/jumanjiman/conn-check.svg)](https://registry.hub.docker.com/u/jumanjiman/conn-check)&nbsp;
 [![Circle CI](https://circleci.com/gh/jumanjihouse/docker-conn-check.png?circle-token=9b167f5d055084e8422996ec63678e42859ec5d0)](https://circleci.com/gh/jumanjihouse/docker-conn-check/tree/master 'View CI builds')
 
 Project URL: [https://github.com/jumanjihouse/docker-conn-check](https://github.com/jumanjihouse/docker-conn-check)
 <br />
 Docker hub: [https://registry.hub.docker.com/u/jumanjiman/conn-check/](https://registry.hub.docker.com/u/jumanjiman/conn-check/)
+<br />
+Image metadata: http://microbadger.com/images/jumanjiman/conn-check
 
 
 ### The Problem

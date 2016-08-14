@@ -3,7 +3,9 @@ machine:
   environment:
     # If you change this, you must also change Dockerfile.
     VERSION: 1.3.1
-    TAG: ${VERSION}-$(date +%Y%m%dT%H%M)-git-${CIRCLE_SHA1:0:7}
+    BUILD_DATE: $(date +%Y%m%dT%H%M)
+    VCS_REF: ${CIRCLE_SHA1:0:7}
+    TAG: ${VERSION}-${BUILD_DATE}-git-${VCS_REF}
     BATS_VER: 0.4.0
   pre:
     # Use a version of docker that supports `docker volume`.
@@ -29,6 +31,7 @@ test:
   pre:
     - script/build
   override:
+    - docker inspect conn-check
     - bats test/*.bats
 
 deployment:
@@ -42,3 +45,4 @@ deployment:
       - docker tag conn-check jumanjiman/conn-check:latest
       - docker push jumanjiman/conn-check:latest
       - docker logout
+      - curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/conn-check/mi1DOCIJPJ4oFq2anLxcMuqztkE='

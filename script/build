@@ -12,7 +12,11 @@ docker create --name ccv conn-check-builder true
 docker cp ccv:/home/user/conn-check/wheels.tgz runtime/
 
 # Build a runtime image.
-docker build --rm -t conn-check runtime/
+docker build --rm \
+  --build-arg BUILD_DATE=${BUILD_DATE} \
+  --build-arg VCS_REF=${VCS_REF} \
+  --build-arg VERSION=${VERSION} \
+  -t conn-check runtime/
 
 # Show image sizes.
 docker images | grep conn-check
