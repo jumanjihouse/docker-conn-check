@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 # Which version of conn-check to install.
 # This should be an env var available to script/build.
@@ -8,7 +8,6 @@ ARG VERSION
 RUN apk add --no-cache \
       ca-certificates \
       bzr \
-      openssl \
       python \
       py-setuptools \
       py-virtualenv \
@@ -16,7 +15,7 @@ RUN apk add --no-cache \
       findutils \
       alpine-sdk \
       libffi-dev \
-      openssl-dev \
+      libressl-dev \
       python-dev \
       py-pip \
       yaml-dev \

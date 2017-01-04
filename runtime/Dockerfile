@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -24,7 +24,6 @@ COPY conn-check /usr/bin/
 RUN apk upgrade --no-cache --available && \
     apk add --no-cache \
       ca-certificates \
-      openssl \
       python \
     && adduser -D user
 
