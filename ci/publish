@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
+. ci/vars
 
-docker login -e ${mail} -u ${user} -p ${pass}
+docker login -u ${user} -p ${pass}
 docker tag conn-check jumanjiman/conn-check:${TAG}
 docker push jumanjiman/conn-check:${TAG}
 docker tag conn-check jumanjiman/conn-check:latest
