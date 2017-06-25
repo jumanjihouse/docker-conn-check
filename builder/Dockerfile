@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 # Which version of conn-check to install.
 # This should be an env var available to script/build.
