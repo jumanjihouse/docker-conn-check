@@ -29,7 +29,7 @@ dependencies:
 
 test:
   pre:
-    - script/build
+    - ci/build
   override:
     - docker inspect conn-check
     - bats test/*.bats
