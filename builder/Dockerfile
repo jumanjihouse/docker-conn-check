@@ -1,8 +1,7 @@
-FROM alpine:3.5
+FROM alpine:3.6
 
 # Which version of conn-check to install.
-# This should be an env var available to script/build.
-# Normally we set this via circle.yml
+# Normally we set this via ci/build.
 ARG VERSION
 
 RUN apk add --no-cache \

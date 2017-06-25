@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+. ci/vars
+
+docker login -u ${user} -p ${pass}
+docker tag conn-check jumanjiman/conn-check:${TAG}
+docker push jumanjiman/conn-check:${TAG}
+docker tag conn-check jumanjiman/conn-check:latest
+docker push jumanjiman/conn-check:latest
+docker logout
+curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/conn-check/mi1DOCIJPJ4oFq2anLxcMuqztkE='

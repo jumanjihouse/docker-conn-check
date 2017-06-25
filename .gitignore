@@ -1,3 +1,4 @@
 *~
 *.swp
 runtime/wheels.tgz
+ci/vars
