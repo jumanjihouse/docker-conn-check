@@ -32,7 +32,7 @@ test:
     - ci/build
   override:
     - docker inspect conn-check
-    - bats test/*.bats
+    - ci/test
 
 deployment:
   master:
