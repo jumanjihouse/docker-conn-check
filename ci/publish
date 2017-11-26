@@ -1,11 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-. ci/vars
+set -u
+set -o pipefail
 
-docker login -u ${user} -p ${pass}
-docker tag conn-check jumanjiman/conn-check:${TAG}
-docker push jumanjiman/conn-check:${TAG}
+################################################################################
+# Publish image(s). Invoke as "ci/publish".
+################################################################################
+
+. ci/vars
+. ci/functions.sh
+
+# shellcheck disable=SC2154
+docker login -u "${user}" -p "${pass}"
+docker tag conn-check jumanjiman/conn-check:"${TAG}"
+docker push jumanjiman/conn-check:"${TAG}"
 docker tag conn-check jumanjiman/conn-check:latest
 docker push jumanjiman/conn-check:latest
 docker logout
 curl -X POST 'https://hooks.microbadger.com/images/jumanjiman/conn-check/mi1DOCIJPJ4oFq2anLxcMuqztkE='
+echo
