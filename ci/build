@@ -1,30 +1,41 @@
-#!/bin/sh
-set -ex
+#!/bin/bash
+set -e
+set -u
+set -o pipefail
+
+################################################################################
+# Build image(s). Invoke as "ci/build".
+################################################################################
 
 cat > ci/vars <<EOF
-export VERSION=1.3.1
-export BUILD_DATE=$(date +%Y%m%dT%H%M)
-export VCS_REF=$(git rev-parse --short HEAD)
-export TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
+declare -rx VERSION=1.3.1
+declare -rx BUILD_DATE=$(date +%Y%m%dT%H%M)
+declare -rx VCS_REF=$(git rev-parse --short HEAD)
+declare -rx TAG=\${VERSION}-\${BUILD_DATE}-git-\${VCS_REF}
 EOF
 . ci/vars
+. ci/functions.sh
 
-# Build conn-check in a "builder" image.
+echo
+echo Build conn-check in a \"builder\" image.
 docker build --rm \
-  --build-arg VERSION=${VERSION} \
+  --build-arg VERSION="${VERSION}" \
   -t conn-check-builder builder/
 
-# Copy wheels.tgz, which contains the built files.
+echo
+echo Copy wheels.tgz, which contains the built files.
 ci/clean
 docker create --name ccv conn-check-builder true
 docker cp ccv:/home/user/conn-check/wheels.tgz runtime/
 
-# Build a runtime image.
+echo
+echo Build a runtime image.
 docker build --rm \
-  --build-arg BUILD_DATE=${BUILD_DATE} \
-  --build-arg VCS_REF=${VCS_REF} \
-  --build-arg VERSION=${VERSION} \
+  --build-arg BUILD_DATE="${BUILD_DATE}" \
+  --build-arg VCS_REF="${VCS_REF}" \
+  --build-arg VERSION="${VERSION}" \
   -t conn-check runtime/
 
-# Show image sizes.
+echo
+echo Show image sizes.
 docker images | grep conn-check

@@ -1,4 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 set -e
+set -u
+set -o pipefail
 
-bats test/*.bats
+################################################################################
+# Run the test harness. Invoke as "ci/test".
+################################################################################
+
+. ci/vars
+. ci/functions.sh
+
+echo
+echo Check for things like whitespace, shell syntax, and binary files.
+ci/check-files -d
+
+echo
+echo Run BATS tests.
+bats ci/*.bats

@@ -1,10 +1,16 @@
-#!/bin/sh
-set -x
+#!/bin/bash
+set -e
+set -u
+set -o pipefail
 
-docker rm -f ccv
-docker volume ls -qf dangling=true | xargs docker volume rm
-docker images -qf dangling=true | xargs docker rmi
+################################################################################
+# Clean the local build environment. Invoke as "ci/clean".
+################################################################################
 
-rm -f runtime/wheels.tgz
+. ci/functions.sh
 
-exit 0
+docker rm -f ccv || :
+docker volume ls -qf dangling=true | xargs docker volume rm || :
+docker images -qf dangling=true | xargs docker rmi || :
+
+rm -f runtime/wheels.tgz || :
