@@ -17,7 +17,7 @@ cd wheels
 
 # Extract wheel files so we can tar them up later.
 for file in *.whl; do
-  unzip -o "${file}";
+  unzip -o "${file}"
 done
 
 # Remove the wheel files since we already extracted them.
