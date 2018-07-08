@@ -8,11 +8,12 @@ set -o pipefail
 ################################################################################
 
 . ci/vars
+. ci/bootstrap
 . ci/functions.sh
 
 echo
 echo Check for things like whitespace, shell syntax, and binary files.
-ci/check-files -d
+pre-commit run --all-files --verbose --hook-stage manual
 
 echo
 echo Run BATS tests.

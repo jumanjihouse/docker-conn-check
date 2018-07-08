@@ -1,3 +1,4 @@
+---
 # https://circleci.com/docs/docker
 version: 2
 jobs:
@@ -20,6 +21,11 @@ jobs:
             docker info
 
       - checkout
+
+      - run:
+          name: Bootstrap the devenv
+          command: |
+            ci/bootstrap
 
       - run:
           name: Build the image
