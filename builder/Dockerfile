@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 
 # Which version of conn-check to install.
 # Normally we set this via ci/build.

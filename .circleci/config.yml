@@ -1,10 +1,11 @@
+---
 # https://circleci.com/docs/docker
 version: 2
 jobs:
   build:
     docker:
       # https://github.com/jumanjihouse/cci/pulls?q=is%3Apr+is%3Aclosed
-      - image: jumanjiman/cci:20180226T0202-git-36b4ae8
+      - image: jumanjiman/cci:20180707T2325-git-e2f6fbf
 
     working_directory: ~/workdir/
 
@@ -20,6 +21,11 @@ jobs:
             docker info
 
       - checkout
+
+      - run:
+          name: Bootstrap the devenv
+          command: |
+            ci/bootstrap
 
       - run:
           name: Build the image

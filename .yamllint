@@ -1,0 +1,8 @@
+---
+# This file configures yamllint as used by pre-commit.
+extends: default
+
+rules:
+  line-length:
+    ignore: |
+      .circleci/config.yml
